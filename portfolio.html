@@ -1,280 +1,593 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    
-    <title>Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Calculator</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-
         body {
-            line-height: 1.6;
-            color: #333;
-        }
-
-        
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: black;
-            padding: 1rem 2rem;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            z-index: 1000;
-        }
-
-        .nav-links {
+            font-family: Arial, sans-serif;
             display: flex;
-            justify-content: flex-end;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #007bff;
-        }
-
-        
-        .hero {
-            height: 100vh;
-            display: flex;
+            justify-content: center;
             align-items: center;
-            padding: 0 2rem;
-            background: url(data:image/jpeg;base64,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) no-repeat center fixed;
-            background-size: cover;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
         }
 
-        .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            gap: 4rem;
-            color: antiquewhite;
-        }
-
-        .hero-text {
-            flex: 1;
-            color: antiquewhite;
-        }
-
-        .hero-image {
-            flex: 1;
-            text-align: center;
-        }
-
-        .profile-img {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            object-fit: cover;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-
-        
-        .projects {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            background: url(https://screenshots.codesandbox.io/nwg7p/3.png) no-repeat center fixed;
-            background-size: cover;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            font-size: 2.5rem;
-        }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: white;
+        .calculator {
+            background-color: white;
+            padding: 2rem;
             border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .project-img {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             width: 100%;
-            height: 200px;
-            object-fit: cover;
+            max-width: 400px;
         }
 
-        .project-info {
-            padding: 1.5rem;
-        }
-
-        .project-title {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-        }
-
-        
-        .contact {
-            background: #f8f9fa;
-            padding: 5rem 2rem;
+        h1 {
             text-align: center;
-            background: url(https://www.reisswolf.com/fileadmin/_processed_/8/b/csm_RW_Header_Datenloeschung_9fe9e2318b.png) no-repeat center fixed;
-            background-size: cover;
-        }
-
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-group {
+            color: #333;
             margin-bottom: 1.5rem;
         }
 
-        input, textarea {
+        .input-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #666;
+        }
+
+        input, select {
             width: 100%;
             padding: 0.75rem;
             border: 1px solid #ddd;
             border-radius: 5px;
             font-size: 1rem;
+            margin-bottom: 1rem;
         }
 
-        .btn {
-            background: #007bff;
+        button {
+            width: 100%;
+            padding: 1rem;
+            background-color: #007bff;
             color: white;
             border: none;
-            padding: 1rem 2rem;
             border-radius: 5px;
+            font-size: 1rem;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: background-color 0.3s;
         }
 
-        .btn:hover {
-            background: #0056b3;
+        button:hover {
+            background-color: #0056b3;
         }
 
-        
-        @media (max-width: 768px) {
-            .hero-content {
-                flex-direction: column-reverse;
-                text-align: center;
-                gap: 2rem;
-            }
-
-            .profile-img {
-                width: 200px;
-                height: 200px;
-                
-            }
-
-            .nav-links {
-                justify-content: center;
-            }
+        #result {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 1.1rem;
+            color: #333;
         }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div>
-                <h1>Am Thierry TURIKUMWE SANGWA,</h1>
-                <h2>&#128075;Hello am developer.</h2>
-                <p>Creating innovative web solutions with modern technologies</p>
-            </div>
-            <div class="hero-image">
-                <img src="c:\Users\Nishimwe\AppData\Local\Microsoft\Windows\INetCache\IE\V2IBH93R\Screenshot_20240829_100938_Instagram[1].jpg" alt="My Profile Picture" style="width:300px; height:auto; border-radius:50%;">
-                
-            </div>
+    <div class="calculator">
+        <h1>Currency Calculator</h1>
+        <div class="input-group">
+            <label for="amount">Amount</label>
+            <input type="number" id="amount" placeholder="Enter amount" min="0" step="0.01">
         </div>
-    </section>
-
-    <section id="projects" class="projects">
-        <h2 class="section-title">My Projects</h2>
-        <div class="project-grid">
-            <div class="project-card">
-                <img src="/api/placeholder/400/300" alt="Project 1" class="project-img">
-                <div class="project-info">
-                    <h3 class="project-title">Project One</h3>
-                    <p>A comprehensive web application built with modern technologies.</p>
-                </div>
-            </div>
-            <div class="project-card">
-                <img src="/api/placeholder/400/300" alt="Project 2" class="project-img">
-                <div class="project-info">
-                    <h3 class="project-title">Project Two</h3>
-                    <p>An innovative mobile-first design with cutting-edge features.</p>
-                </div>
-            </div>
-            <div class="project-card">
-                <img src="/api/placeholder/400/300" alt="Project 3" class="project-img">
-                <div class="project-info">
-                    <h3 class="project-title">Project Three</h3>
-                    <p>A responsive web platform focusing on user experience.</p>
-                </div>
-            </div>
+        <div class="input-group">
+            <label for="fromCurrency">From Currency</label>
+            <select id="fromCurrency">
+                <option value="USD">USD - United States Dollar</option>
+                <option value="EUR">EUR - Euro</option>
+                <option value="GBP">GBP - British Pound Sterling</option>
+                <option value="JPY">JPY - Japanese Yen</option>
+                <option value="AED">AED - United Arab Emirates Dirham</option>
+                <option value="AFN">AFN - Afghan Afghani</option>
+                <option value="ALL">ALL - Albanian Lek</option>
+                <option value="AMD">AMD - Armenian Dram</option>
+                <option value="ANG">ANG - Netherlands Antillean Guilder</option>
+                <option value="AOA">AOA - Angolan Kwanza</option>
+                <option value="ARS">ARS - Argentine Peso</option>
+                <option value="AUD">AUD - Australian Dollar</option>
+                <option value="AWG">AWG - Aruban Florin</option>
+                <option value="AZN">AZN - Azerbaijani Manat</option>
+                <option value="BAM">BAM - Bosnia-Herzegovina Convertible Mark</option>
+                <option value="BBD">BBD - Barbadian Dollar</option>
+                <option value="BDT">BDT - Bangladeshi Taka</option>
+                <option value="BGN">BGN - Bulgarian Lev</option>
+                <option value="BHD">BHD - Bahraini Dinar</option>
+                <option value="BIF">BIF - Burundian Franc</option>
+                <option value="BMD">BMD - Bermudan Dollar</option>
+                <option value="BND">BND - Brunei Dollar</option>
+                <option value="BOB">BOB - Bolivian Boliviano</option>
+                <option value="BRL">BRL - Brazilian Real</option>
+                <option value="BSD">BSD - Bahamian Dollar</option>
+                <option value="BTN">BTN - Bhutanese Ngultrum</option>
+                <option value="BWP">BWP - Botswanan Pula</option>
+                <option value="BYN">BYN - Belarusian Ruble</option>
+                <option value="BZD">BZD - Belize Dollar</option>
+                <option value="CAD">CAD - Canadian Dollar</option>
+                <option value="CDF">CDF - Congolese Franc</option>
+                <option value="CHF">CHF - Swiss Franc</option>
+                <option value="CLP">CLP - Chilean Peso</option>
+                <option value="CNY">CNY - Chinese Yuan</option>
+                <option value="COP">COP - Colombian Peso</option>
+                <option value="CRC">CRC - Costa Rican Colón</option>
+                <option value="CUP">CUP - Cuban Peso</option>
+                <option value="CVE">CVE - Cape Verdean Escudo</option>
+                <option value="CZK">CZK - Czech Republic Koruna</option>
+                <option value="DJF">DJF - Djiboutian Franc</option>
+                <option value="DKK">DKK - Danish Krone</option>
+                <option value="DOP">DOP - Dominican Peso</option>
+                <option value="DZD">DZD - Algerian Dinar</option>
+                <option value="EGP">EGP - Egyptian Pound</option>
+                <option value="ERN">ERN - Eritrean Nakfa</option>
+                <option value="ETB">ETB - Ethiopian Birr</option>
+                <option value="FJD">FJD - Fijian Dollar</option>
+                <option value="FKP">FKP - Falkland Islands Pound</option>
+                <option value="GEL">GEL - Georgian Lari</option>
+                <option value="GHS">GHS - Ghanaian Cedi</option>
+                <option value="GIP">GIP - Gibraltar Pound</option>
+                <option value="GMD">GMD - Gambian Dalasi</option>
+                <option value="GNF">GNF - Guinean Franc</option>
+                <option value="GTQ">GTQ - Guatemalan Quetzal</option>
+                <option value="GYD">GYD - Guyanaese Dollar</option>
+                <option value="HKD">HKD - Hong Kong Dollar</option>
+                <option value="HNL">HNL - Honduran Lempira</option>
+                <option value="HRK">HRK - Croatian Kuna</option>
+                <option value="HTG">HTG - Haitian Gourde</option>
+                <option value="HUF">HUF - Hungarian Forint</option>
+                <option value="IDR">IDR - Indonesian Rupiah</option>
+                <option value="ILS">ILS - Israeli New Shekel</option>
+                <option value="INR">INR - Indian Rupee</option>
+                <option value="IQD">IQD - Iraqi Dinar</option>
+                <option value="IRR">IRR - Iranian Rial</option>
+                <option value="ISK">ISK - Icelandic Króna</option>
+                <option value="JMD">JMD - Jamaican Dollar</option>
+                <option value="JOD">JOD - Jordanian Dinar</option>
+                <option value="KES">KES - Kenyan Shilling</option>
+                <option value="KGS">KGS - Kyrgystani Som</option>
+                <option value="KHR">KHR - Cambodian Riel</option>
+                <option value="KMF">KMF - Comorian Franc</option>
+                <option value="KPW">KPW - North Korean Won</option>
+                <option value="KRW">KRW - South Korean Won</option>
+                <option value="KWD">KWD - Kuwaiti Dinar</option>
+                <option value="KYD">KYD - Cayman Islands Dollar</option>
+                <option value="KZT">KZT - Kazakhstani Tenge</option>
+                <option value="LAK">LAK - Laotian Kip</option>
+                <option value="LBP">LBP - Lebanese Pound</option>
+                <option value="LKR">LKR - Sri Lankan Rupee</option>
+                <option value="LRD">LRD - Liberian Dollar</option>
+                <option value="LSL">LSL - Lesotho Loti</option>
+                <option value="LYD">LYD - Libyan Dinar</option>
+                <option value="MAD">MAD - Moroccan Dirham</option>
+                <option value="MDL">MDL - Moldovan Leu</option>
+                <option value="MGA">MGA - Malagasy Ariary</option>
+                <option value="MKD">MKD - Macedonian Denar</option>
+                <option value="MMK">MMK - Myanma Kyat</option>
+                <option value="MNT">MNT - Mongolian Tugrik</option>
+                <option value="MOP">MOP - Macanese Pataca</option>
+                <option value="MRU">MRU - Mauritanian Ouguiya</option>
+                <option value="MUR">MUR - Mauritian Rupee</option>
+                <option value="MVR">MVR - Maldivian Rufiyaa</option>
+                <option value="MWK">MWK - Malawian Kwacha</option>
+                <option value="MXN">MXN - Mexican Peso</option>
+                <option value="MYR">MYR - Malaysian Ringgit</option>
+                <option value="MZN">MZN - Mozambican Metical</option>
+                <option value="NAD">NAD - Namibian Dollar</option>
+                <option value="NGN">NGN - Nigerian Naira</option>
+                <option value="NIO">NIO - Nicaraguan Córdoba</option>
+                <option value="NOK">NOK - Norwegian Krone</option>
+                <option value="NPR">NPR - Nepalese Rupee</option>
+                <option value="NZD">NZD - New Zealand Dollar</option>
+                <option value="OMR">OMR - Omani Rial</option>
+                <option value="PAB">PAB - Panamanian Balboa</option>
+                <option value="PEN">PEN - Peruvian Nuevo Sol</option>
+                <option value="PGK">PGK - Papua New Guinean Kina</option>
+                <option value="PHP">PHP - Philippine Peso</option>
+                <option value="PKR">PKR - Pakistani Rupee</option>
+                <option value="PLN">PLN - Polish Złoty</option>
+                <option value="PYG">PYG - Paraguayan Guarani</option>
+                <option value="QAR">QAR - Qatari Rial</option>
+                <option value="RON">RON - Romanian Leu</option>
+                <option value="RSD">RSD - Serbian Dinar</option>
+                <option value="RUB">RUB - Russian Ruble</option>
+                <option value="RWF">RWF - Rwandan Franc</option>
+                <option value="SAR">SAR - Saudi Riyal</option>
+                <option value="SBD">SBD - Solomon Islands Dollar</option>
+                <option value="SCR">SCR - Seychellois Rupee</option>
+                <option value="SDG">SDG - Sudanese Pound</option>
+                <option value="SEK">SEK - Swedish Krona</option>
+                <option value="SGD">SGD - Singapore Dollar</option>
+                <option value="SHP">SHP - Saint Helena Pound</option>
+                <option value="SLL">SLL - Sierra Leonean Leone</option>
+                <option value="SOS">SOS - Somali Shilling</option>
+                <option value="SRD">SRD - Surinamese Dollar</option>
+                <option value="SSP">SSP - South Sudanese Pound</option>
+                <option value="STN">STN - São Tomé and Príncipe Dobra</option>
+                <option value="SVC">SVC - Salvadoran Colón</option>
+                <option value="SYP">SYP - Syrian Pound</option>
+                <option value="SZL">SZL - Swazi Lilangeni</option>
+                <option value="THB">THB - Thai Baht</option>
+                <option value="TJS">TJS - Tajikistani Somoni</option>
+                <option value="TMT">TMT - Turkmenistani Manat</option>
+                <option value="TND">TND - Tunisian Dinar</option>
+                <option value="TOP">TOP - Tongan Paʻanga</option>
+                <option value="TRY">TRY - Turkish Lira</option>
+                <option value="TTD">TTD - Trinidad and Tobago Dollar</option>
+                <option value="TWD">TWD - New Taiwan Dollar</option>
+                <option value="TZS">TZS - Tanzanian Shilling</option>
+                <option value="UAH">UAH - Ukrainian Hryvnia</option>
+                <option value="UGX">UGX - Ugandan Shilling</option>
+                <option value="UYU">UYU - Uruguayan Peso</option>
+                <option value="UZS">UZS - Uzbekistan Som</option>
+                <option value="VES">VES - Venezuelan Bolívar</option>
+                <option value="VND">VND - Vietnamese Dong</option>
+                <option value="VUV">VUV - Vanuatu Vatu</option>
+                <option value="WST">WST - Samoan Tala</option>
+                <option value="XAF">XAF - Central African CFA Franc</option>
+                <option value="XCD">XCD - East Caribbean Dollar</option>
+                <option value="XOF">XOF - West African CFA Franc</option>
+                <option value="XPF">XPF - CFP Franc</option>
+                <option value="YER">YER - Yemeni Rial</option>
+                <option value="ZAR">ZAR - South African Rand</option>
+                <option value="ZMW">ZMW - Zambian Kwacha</option>
+                <option value="ZWL">ZWL - Zimbabwean Dollar</option>
+            </select>
         </div>
-    </section>
-
-    <section id="contact" class="contact">
-        <h2 class="section-title">Contact Me</h2>
-        <form class="contact-form">
-            <div class="form-group">
-                <input type="text" placeholder="Your Name" required>
-            </div>
-            <div class="form-group">
-                <input type="email" placeholder="Your Email" required>
-            </div>
-            <div class="form-group">
-                <textarea placeholder="Your Message" rows="5" required></textarea>
-            </div>
-            <button type="submit" class="btn">Send Message</button>
-        </form>
-    </section>
+        <div class="input-group">
+            <label for="toCurrency">To Currency</label>
+            <select id="toCurrency">
+                <option value="USD">USD - United States Dollar</option>
+                <option value="EUR">EUR - Euro</option>
+                <option value="GBP">GBP - British Pound Sterling</option>
+                <option value="JPY">JPY - Japanese Yen</option>
+                <option value="AED">AED - United Arab Emirates Dirham</option>
+                <option value="AFN">AFN - Afghan Afghani</option>
+                <option value="ALL">ALL - Albanian Lek</option>
+                <option value="AMD">AMD - Armenian Dram</option>
+                <option value="ANG">ANG - Netherlands Antillean Guilder</option>
+                <option value="AOA">AOA - Angolan Kwanza</option>
+                <option value="ARS">ARS - Argentine Peso</option>
+                <option value="AUD">AUD - Australian Dollar</option>
+                <option value="AWG">AWG - Aruban Florin</option>
+                <option value="AZN">AZN - Azerbaijani Manat</option>
+                <option value="BAM">BAM - Bosnia-Herzegovina Convertible Mark</option>
+                <option value="BBD">BBD - Barbadian Dollar</option>
+                <option value="BDT">BDT - Bangladeshi Taka</option>
+                <option value="BGN">BGN - Bulgarian Lev</option>
+                <option value="BHD">BHD - Bahraini Dinar</option>
+                <option value="BIF">BIF - Burundian Franc</option>
+                <option value="BMD">BMD - Bermudan Dollar</option>
+                <option value="BND">BND - Brunei Dollar</option>
+                <option value="BOB">BOB - Bolivian Boliviano</option>
+                <option value="BRL">BRL - Brazilian Real</option>
+                <option value="BSD">BSD - Bahamian Dollar</option>
+                <option value="BTN">BTN - Bhutanese Ngultrum</option>
+                <option value="BWP">BWP - Botswanan Pula</option>
+                <option value="BYN">BYN - Belarusian Ruble</option>
+                <option value="BZD">BZD - Belize Dollar</option>
+                <option value="CAD">CAD - Canadian Dollar</option>
+                <option value="CDF">CDF - Congolese Franc</option>
+                <option value="CHF">CHF - Swiss Franc</option>
+                <option value="CLP">CLP - Chilean Peso</option>
+                <option value="CNY">CNY - Chinese Yuan</option>
+                <option value="COP">COP - Colombian Peso</option>
+                <option value="CRC">CRC - Costa Rican Colón</option>
+                <option value="CUP">CUP - Cuban Peso</option>
+                <option value="CVE">CVE - Cape Verdean Escudo</option>
+                <option value="CZK">CZK - Czech Republic Koruna</option>
+                <option value="DJF">DJF - Djiboutian Franc</option>
+                <option value="DKK">DKK - Danish Krone</option>
+                <option value="DOP">DOP - Dominican Peso</option>
+                <option value="DZD">DZD - Algerian Dinar</option>
+                <option value="EGP">EGP - Egyptian Pound</option>
+                <option value="ERN">ERN - Eritrean Nakfa</option>
+                <option value="ETB">ETB - Ethiopian Birr</option>
+                <option value="FJD">FJD - Fijian Dollar</option>
+                <option value="FKP">FKP - Falkland Islands Pound</option>
+                <option value="GEL">GEL - Georgian Lari</option>
+                <option value="GHS">GHS - Ghanaian Cedi</option>
+                <option value="GIP">GIP - Gibraltar Pound</option>
+                <option value="GMD">GMD - Gambian Dalasi</option>
+                <option value="GNF">GNF - Guinean Franc</option>
+                <option value="GTQ">GTQ - Guatemalan Quetzal</option>
+                <option value="GYD">GYD - Guyanaese Dollar</option>
+                <option value="HKD">HKD - Hong Kong Dollar</option>
+                <option value="HNL">HNL - Honduran Lempira</option>
+                <option value="HRK">HRK - Croatian Kuna</option>
+                <option value="HTG">HTG - Haitian Gourde</option>
+                <option value="HUF">HUF - Hungarian Forint</option>
+                <option value="IDR">IDR - Indonesian Rupiah</option>
+                <option value="ILS">ILS - Israeli New Shekel</option>
+                <option value="INR">INR - Indian Rupee</option>
+                <option value="IQD">IQD - Iraqi Dinar</option>
+                <option value="IRR">IRR - Iranian Rial</option>
+                <option value="ISK">ISK - Icelandic Króna</option>
+                <option value="JMD">JMD - Jamaican Dollar</option>
+                <option value="JOD">JOD - Jordanian Dinar</option>
+                <option value="KES">KES - Kenyan Shilling</option>
+                <option value="KGS">KGS - Kyrgystani Som</option>
+                <option value="KHR">KHR - Cambodian Riel</option>
+                <option value="KMF">KMF - Comorian Franc</option>
+                <option value="KPW">KPW - North Korean Won</option>
+                <option value="KRW">KRW - South Korean Won</option>
+                <option value="KWD">KWD - Kuwaiti Dinar</option>
+                <option value="KYD">KYD - Cayman Islands Dollar</option>
+                <option value="KZT">KZT - Kazakhstani Tenge</option>
+                <option value="LAK">LAK - Laotian Kip</option>
+                <option value="LBP">LBP - Lebanese Pound</option>
+                <option value="LKR">LKR - Sri Lankan Rupee</option>
+                <option value="LRD">LRD - Liberian Dollar</option>
+                <option value="LSL">LSL - Lesotho Loti</option>
+                <option value="LYD">LYD - Libyan Dinar</option>
+                <option value="MAD">MAD - Moroccan Dirham</option>
+                <option value="MDL">MDL - Moldovan Leu</option>
+                <option value="MGA">MGA - Malagasy Ariary</option>
+                <option value="MKD">MKD - Macedonian Denar</option>
+                <option value="MMK">MMK - Myanma Kyat</option>
+                <option value="MNT">MNT - Mongolian Tugrik</option>
+                <option value="MOP">MOP - Macanese Pataca</option>
+                <option value="MRU">MRU - Mauritanian Ouguiya</option>
+                <option value="MUR">MUR - Mauritian Rupee</option>
+                <option value="MVR">MVR - Maldivian Rufiyaa</option>
+                <option value="MWK">MWK - Malawian Kwacha</option>
+                <option value="MXN">MXN - Mexican Peso</option>
+                <option value="MYR">MYR - Malaysian Ringgit</option>
+                <option value="MZN">MZN - Mozambican Metical</option>
+                <option value="NAD">NAD - Namibian Dollar</option>
+                <option value="NGN">NGN - Nigerian Naira</option>
+                <option value="NIO">NIO - Nicaraguan Córdoba</option>
+                <option value="NOK">NOK - Norwegian Krone</option>
+                <option value="NPR">NPR - Nepalese Rupee</option>
+                <option value="NZD">NZD - New Zealand Dollar</option>
+                <option value="OMR">OMR - Omani Rial</option>
+                <option value="PAB">PAB - Panamanian Balboa</option>
+                <option value="PEN">PEN - Peruvian Nuevo Sol</option>
+                <option value="PGK">PGK - Papua New Guinean Kina</option>
+                <option value="PHP">PHP - Philippine Peso</option>
+                <option value="PKR">PKR - Pakistani Rupee</option>
+                <option value="PLN">PLN - Polish Złoty</option>
+                <option value="PYG">PYG - Paraguayan Guarani</option>
+                <option value="QAR">QAR - Qatari Rial</option>
+                <option value="RON">RON - Romanian Leu</option>
+                <option value="RSD">RSD - Serbian Dinar</option>
+                <option value="RUB">RUB - Russian Ruble</option>
+                <option value="RWF">RWF - Rwandan Franc</option>
+                <option value="SAR">SAR - Saudi Riyal</option>
+                <option value="SBD">SBD - Solomon Islands Dollar</option>
+                <option value="SCR">SCR - Seychellois Rupee</option>
+                <option value="SDG">SDG - Sudanese Pound</option>
+                <option value="SEK">SEK - Swedish Krona</option>
+                <option value="SGD">SGD - Singapore Dollar</option>
+                <option value="SHP">SHP - Saint Helena Pound</option>
+                <option value="SLL">SLL - Sierra Leonean Leone</option>
+                <option value="SOS">SOS - Somali Shilling</option>
+                <option value="SRD">SRD - Surinamese Dollar</option>
+                <option value="SSP">SSP - South Sudanese Pound</option>
+                <option value="STN">STN - São Tomé and Príncipe Dobra</option>
+                <option value="SVC">SVC - Salvadoran Colón</option>
+                <option value="SYP">SYP - Syrian Pound</option>
+                <option value="SZL">SZL - Swazi Lilangeni</option>
+                <option value="THB">THB - Thai Baht</option>
+                <option value="TJS">TJS - Tajikistani Somoni</option>
+                <option value="TMT">TMT - Turkmenistani Manat</option>
+                <option value="TND">TND - Tunisian Dinar</option>
+                <option value="TOP">TOP - Tongan Paʻanga</option>
+                <option value="TRY">TRY - Turkish Lira</option>
+                <option value="TTD">TTD - Trinidad and Tobago Dollar</option>
+                <option value="TWD">TWD - New Taiwan Dollar</option>
+                <option value="TZS">TZS - Tanzanian Shilling</option>
+                <option value="UAH">UAH - Ukrainian Hryvnia</option>
+                <option value="UGX">UGX - Ugandan Shilling</option>
+                <option value="UYU">UYU - Uruguayan Peso</option>
+                <option value="UZS">UZS - Uzbekistan Som</option>
+                <option value="VES">VES - Venezuelan Bolívar</option>
+                <option value="VND">VND - Vietnamese Dong</option>
+                <option value="VUV">VUV - Vanuatu Vatu</option>
+                <option value="WST">WST - Samoan Tala</option>
+                <option value="XAF">XAF - Central African CFA Franc</option>
+                <option value="XCD">XCD - East Caribbean Dollar</option>
+                <option value="XOF">XOF - West African CFA Franc</option>
+                <option value="XPF">XPF - CFP Franc</option>
+                <option value="YER">YER - Yemeni Rial</option>
+                <option value="ZAR">ZAR - South African Rand</option>
+                <option value="ZMW">ZMW - Zambian Kwacha</option>
+                <option value="ZWL">ZWL - Zimbabwean Dollar</option>
+            </select>
+        </div>
+        <button onclick="convertCurrency()">Convert</button>
+        <div id="result">Result will appear here</div>
+    </div>
 
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+        // Exchange rates (as of a recent date)
+        const exchangeRates = {
+            USD: 1.0,
+            EUR: 0.93,
+            GBP: 0.80,
+            JPY: 151.50,
+            AED: 3.67,
+            AFN: 73.21,
+            ALL: 97.45,
+            AMD: 411.82,
+            ANG: 1.79,
+            AOA: 832.50,
+            ARS: 867.23,
+            AUD: 1.53,
+            AWG: 1.79,
+            AZN: 1.70,
+            BAM: 1.82,
+            BBD: 2.00,
+            BDT: 109.82,
+            BGN: 1.82,
+            BHD: 0.376,
+            BIF: 2845.21,
+            BMD: 1.00,
+            BND: 1.35,
+            BOB: 6.91,
+            BRL: 5.07,
+            BSD: 1.00,
+            BTN: 83.45,
+            BWP: 13.82,
+            BYN: 3.27,
+            BZD: 2.00,
+            CAD: 1.36,
+            CDF: 2695.00,
+            CHF: 0.90,
+            CLP: 967.82,
+            CNY: 7.24,
+            COP: 3927.50,
+            CRC: 520.45,
+            CUP: 24.00,
+            CVE: 102.65,
+            CZK: 23.45,
+            DJF: 177.72,
+            DKK: 6.92,
+            DOP: 58.45,
+            DZD: 134.82,
+            EGP: 30.90,
+            ERN: 15.00,
+            ETB: 56.82,
+            FJD: 2.27,
+            FKP: 0.80,
+            GEL: 2.67,
+            GHS: 12.82,
+            GIP: 0.80,
+            GMD: 64.82,
+            GNF: 8625.00,
+            GTQ: 7.82,
+            GYD: 209.45,
+            HKD: 7.83,
+            HNL: 24.67,
+            HRK: 7.04,
+            HTG: 132.82,
+            HUF: 365.45,
+            IDR: 15892.00,
+            ILS: 3.71,
+            INR: 83.45,
+            IQD: 1310.00,
+            IRR: 42105.00,
+            ISK: 137.82,
+            JMD: 156.45,
+            JOD: 0.709,
+            KES: 132.82,
+            KGS: 89.45,
+            KHR: 4082.00,
+            KMF: 457.82,
+            KPW: 900.00,
+            KRW: 1345.82,
+            KWD: 0.308,
+            KYD: 0.833,
+            KZT: 449.82,
+            LAK: 20450.00,
+            LBP: 15000.00,
+            LKR: 315.82,
+            LRD: 190.45,
+            LSL: 19.27,
+            LYD: 4.82,
+            MAD: 10.12,
+            MDL: 17.82,
+            MGA: 4482.00,
+            MKD: 57.45,
+            MMK: 2100.00,
+            MNT: 3445.00,
+            MOP: 8.07,
+            MRU: 39.45,
+            MUR: 45.82,
+            MVR: 15.45,
+            MWK: 1682.00,
+            MXN: 16.82,
+            MYR: 4.77,
+            MZN: 64.82,
+            NAD: 19.27,
+            NGN: 1182.00,
+            NIO: 36.82,
+            NOK: 10.82,
+            NPR: 133.52,
+            NZD: 1.67,
+            OMR: 0.385,
+            PAB: 1.00,
+            PEN: 3.72,
+            PGK: 3.82,
+            PHP: 56.82,
+            PKR: 278.45,
+            PLN: 4.02,
+            PYG: 7282.00,
+            QAR: 3.64,
+            RON: 4.62,
+            RSD: 109.82,
+            RUB: 92.45,
+            RWF: 1282.00,
+            SAR: 3.75,
+            SBD: 8.45,
+            SCR: 13.27,
+            SDG: 601.82,
+            SEK: 10.82,
+            SGD: 1.35,
+            SHP: 0.80,
+            SLL: 20882.00,
+            SOS: 571.82,
+            SRD: 36.45,
+            SSP: 1007.82,
+            STN: 22.82,
+            SVC: 8.75,
+            SYP: 13082.00,
+            SZL: 19.27,
+            THB: 36.82,
+            TJS: 10.97,
+            TMT: 3.50,
+            TND: 3.12,
+            TOP: 2.37,
+            TRY: 31.82,
+            TTD: 6.77,
+            TWD: 32.27,
+            TZS: 2545.00,
+            UAH: 39.82,
+            UGX: 3882.00,
+            UYU: 39.45,
+            UZS: 12882.00,
+            VES: 36.82,
+            VND: 24782.00,
+            VUV: 122.82,
+            WST: 2.77,
+            XAF: 609.82,
+            XCD: 2.70,
+            XOF: 609.82,
+            XPF: 111.45,
+            YER: 250.45,
+            ZAR: 19.27,
+            ZMW: 27.82,
+            ZWL: 322.45
+        };
 
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
-            } else {
-                navbar.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
+        function convertCurrency() {
+            const amount = parseFloat(document.getElementById('amount').value);
+            const fromCurrency = document.getElementById('fromCurrency').value;
+            const toCurrency = document.getElementById('toCurrency').value;
+            
+            if (isNaN(amount)) {
+                document.getElementById('result').textContent = 'Please enter a valid amount';
+                return;
             }
-        });
+
+            // Convert to USD first (base currency)
+            const inUSD = amount / exchangeRates[fromCurrency];
+            // Convert from USD to target currency
+            const result = inUSD * exchangeRates[toCurrency];
+
+            document.getElementById('result').textContent = 
+                `${amount.toFixed(2)} ${fromCurrency} = ${result.toFixed(2)} ${toCurrency}`;
+        }
     </script>
 </body>
 </html>
