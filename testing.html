@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To My Lovely Girl</title>
+    <style>
+        body {
+            background: url('https://envierosesprestige.com/wp-content/uploads/2022/01/7-beautiful-and-intimate-ways-to-propose-marriage-to-your-girlfriend.jpg') no-repeat center center/cover;
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: wheat;
+            margin: 55px;
+            height: 95vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        h1 {
+            font-size: 24px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .buttons {
+            margin-top: 20px;
+            position: relative;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background-color: #555;
+        }
+        #noBtn {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <h1>You are the most amazing person I've ever met, and every moment with you feels special.<br>
+        I really like you, and I would love for us to be more than friends. Will you be my girlfriend? 💙</h1>
+    <div class="buttons">
+        <button id="yesBtn">Yes</button>
+        <button id="noBtn">No</button>
+    </div>
+
+    <script>
+        document.getElementById('yesBtn').addEventListener('click', () => {
+            alert('I love you so much, and I promise to make you happy every day. I will always be there for you! ❤️');
+        });
+
+        const noBtn = document.getElementById('noBtn');
+        noBtn.addEventListener('mouseenter', () => {
+            const x = Math.random() * (window.innerWidth - noBtn.clientWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.clientHeight);
+            noBtn.style.left = `${x}px`;
+            noBtn.style.top = `${y}px`;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deposit</title>
+    <style>
+       body{
+        margin-left: 400px;
+        padding: 50px;
+        background-color: blanchedalmond;
+        font-size: x-large;
+        justify-content: center;
+        align-items: center;
+
+       }
+       button:hover{
+        background-color: aqua;
+        color: blue;
+       }
+    a{
+        text-decoration: none;
+        color: black;
+    }
+  a:hover{
+    color: black;
+  }
+
+    </style>
+</head>
+<body>
+    <h1>Deposit</h1>
+    <div>
+    <form>
+        <p>Current balance: <span id="balance">$1000.00</span></p>
+        <label for="amount">Amount</label>
+        <input type="number" id="amount" name="amount" placeholder="Enter amount to deposit" required>
+        <button type="submit">Deposit</button>
+        <button type="button">Cancel</button>
+    </form>
+</div>
+    <div>
+        <button><a href="atm.html" rel="atm">atm-home</a></button>
+        <button><a href="withdraw.html" rel="withdraw">Withdraw</a></button>
+    </div>
+    <script>
+        let currentBalance = 1000;
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const amount = parseFloat(document.getElementById('amount').value);
+            if (amount > 0) {
+                currentBalance += amount;
+                document.getElementById('balance').textContent = `$${currentBalance.toFixed(2)}`;
+                alert(`Deposited $${amount.toFixed(2)}`);
+            } else {
+                alert('Enter a valid amount!');
+            }
+        });
+    </script>
+</body>
+</html>
